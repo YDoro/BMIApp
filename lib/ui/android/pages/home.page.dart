@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imc/blocs/imc.bloc.dart';
+import 'package:imc/language/pt/ui/pages/home.page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,11 +9,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var bloc = new ImcBloc();
+  final home = new Home();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cálculo de IMC"),
+        title: Text(home.title),
       ),
       body: ListView(
         children: <Widget>[
@@ -21,7 +24,7 @@ class _HomePageState extends State<HomePage> {
             child: TextFormField(
               controller: bloc.heightCtrl,
               decoration: InputDecoration(
-                labelText: "Altura (cm)",
+                labelText: home.height_input_label,
               ),
               keyboardType: TextInputType.number,
             ),
@@ -31,7 +34,7 @@ class _HomePageState extends State<HomePage> {
             child: TextFormField(
               controller: bloc.weightCtrl,
               decoration: InputDecoration(
-                labelText: "Peso (kg)",
+                labelText: home.weight_input_label,
               ),
               keyboardType: TextInputType.number,
             ),
@@ -48,7 +51,7 @@ class _HomePageState extends State<HomePage> {
             child: FlatButton(
               color: Theme.of(context).primaryColor,
               child: Text(
-                "Calcular",
+                home.button_calculate,
                 style: TextStyle(
                   color: Colors.white,
                 ),
