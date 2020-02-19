@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:imc/blocs/imc.bloc.dart';
+import 'package:imc/language/pt/ui/pages/home.page.dart' as lang;
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -14,14 +15,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        middle: Text("Cálculo de IMC"),
+        middle: Text(lang.home['title']),
       ),
       child: ListView(
         children: <Widget>[
           Padding(
             padding: EdgeInsets.all(20),
             child: CupertinoTextField(
-              placeholder: "Altura (cm)",
+              placeholder: lang.home['height_input_label'],
               controller: bloc.heightCtrl,
               keyboardType: TextInputType.number,
             ),
@@ -29,7 +30,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: EdgeInsets.all(20),
             child: CupertinoTextField(
-              placeholder: "Peso (kg)",
+              placeholder: lang.home['weight_input_label'],
               controller: bloc.weightCtrl,
               keyboardType: TextInputType.number,
             ),
@@ -44,7 +45,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: EdgeInsets.all(20),
             child: CupertinoButton.filled(
-              child: Text("Calcular"),
+              child: Text(lang.home['button_calculate']),
               onPressed: () {
                 setState(() {
                   bloc.calculate();
