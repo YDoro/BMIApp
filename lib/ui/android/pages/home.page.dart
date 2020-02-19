@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:imc/blocs/imc.bloc.dart';
-import 'package:imc/language/pt/ui/pages/home.page.dart';
+import 'dart:io' show Platform;
+import 'package:imc/language/pt/ui/pages/home.page.dart' as pt;
+import 'package:imc/language/en/ui/pages/home.page.dart' as en;
 
 class HomePage extends StatefulWidget {
   @override
@@ -9,13 +11,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var bloc = new ImcBloc();
-  final home = new Home();
-
+  Map home = Platform.localeName == 'pt_BR' ? pt.home : en.home;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(home.title),
+        title: Text(home['title']),
       ),
       body: ListView(
         children: <Widget>[
@@ -24,7 +25,7 @@ class _HomePageState extends State<HomePage> {
             child: TextFormField(
               controller: bloc.heightCtrl,
               decoration: InputDecoration(
-                labelText: home.height_input_label,
+                labelText: home['height_input_label'],
               ),
               keyboardType: TextInputType.number,
             ),
@@ -34,7 +35,7 @@ class _HomePageState extends State<HomePage> {
             child: TextFormField(
               controller: bloc.weightCtrl,
               decoration: InputDecoration(
-                labelText: home.weight_input_label,
+                labelText: home['weight_input_label'],
               ),
               keyboardType: TextInputType.number,
             ),
@@ -51,7 +52,7 @@ class _HomePageState extends State<HomePage> {
             child: FlatButton(
               color: Theme.of(context).primaryColor,
               child: Text(
-                home.button_calculate,
+                home['button_calculate'],
                 style: TextStyle(
                   color: Colors.white,
                 ),
